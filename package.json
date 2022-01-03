@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "command-line-args": "^5.2.0",
+    "command-line-usage": "^6.1.1",
+    "megalodon": "^4.0.0"
+  },
+  "name": "fediverse-imagebot",
+  "version": "0.1.0",
+  "description": "Imagebot for the fediverse (Pleroma, Mastodon, Misskey)",
+  "main": "bot.js",
+  "scripts": {
+    "lint": "eslint",
+    "test": "echo \" No tests yet!\" && exit 0"
+  },
+  "repository": "https://git.freecumextremist.com/NotSam/fediverse-imagebot.git",
+  "author": "Sam Therapy <sam@samtherapy.net>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.6.0"
+  }
+}
