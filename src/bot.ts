@@ -24,7 +24,7 @@ const optionDefinitions = [
         name: "config",
         type: String,
         alias: "c",
-        description: "Path to the configuration file.",
+        description: "Path to the configuration file. (default: ./config.json)",
         defaultValue: "./config.json",
         typeLabel: "<file>"
     },
@@ -32,7 +32,7 @@ const optionDefinitions = [
         name: "sfw_directory",
         type: String,
         alias: "s",
-        description: "The directory of (SFW) images for the bot to post.",
+        description: "The directory of (SFW) images for the bot to post. (default: ./sfw)",
         defaultValue: "./images/sfw",
         typeLabel: "<folder>"
     },
@@ -40,7 +40,7 @@ const optionDefinitions = [
         name: "nsfw_directory",
         type: String,
         alias: "n",
-        description: "The directory of (NSFW) images for the bot to post. If it chooses these, they will be marked sensitive.",
+        description: "The directory of (NSFW) images for the bot to post. If it chooses these, they will be marked sensitive. (default: ./nsfw)",
         defaultValue: "./images/nsfw",
         typeLabel: "<folder>"
     },
