@@ -21,9 +21,7 @@ const optionDefinitions = [
         description: "Print debugging output."
     }
 ];
-
 const args = commandLineArgs(optionDefinitions);
-
 if (args.help) {
     const usage = commandLineUsage([
         {
@@ -46,20 +44,23 @@ if (args.verbose) {
     console.log("Running in verbose mode.");
     console.log();
 }
-    
 
 const instance: string = question("Instance URL: ");
 callDetector(instance).then(type => {
-    let clientId!: string;
-    let clientSecret!: string;
     const client = generator(type, instance);
-    client.registerApp("Node Imagebot", { scopes: [  "write" ] })
+    client.registerApp("Node Imagebot", { website: "https://git.freecumextremist.com/NotSam/fediverse-imagebot" })
         .then((appData) => {
-            clientId = appData.clientId;
-            clientSecret = appData.clientSecret;
+            const clientId = appData.clientId;
+            const clientSecret = appData.clientSecret;
             console.log("Please open this URL in your browser for the authorization code.");
             console.log(appData.url);
-            const code = question("Authorization Code: ");
+            let code: string;
+            if (type === "misskey") {
+                code = appData.session_token || "";
+                question("Authenticate with Misskey, then hit return.");
+            } else {
+                code = question("Authorization Code: ");
+            }
             client.fetchAccessToken(clientId, clientSecret, code)
                 .then((tokenData: OAuth.TokenData) => {
                     if (args.verbose) {
@@ -82,7 +83,6 @@ callDetector(instance).then(type => {
                         console.error(err);
                     exit(1);
                 });
-      
         })
         .catch((err: Error) => { // catch for registerApp
             console.error("App registration failure!");
@@ -91,7 +91,6 @@ callDetector(instance).then(type => {
             exit(1);
         });
 });
-
 
 async function callDetector(instance: string) {
     const type = await detector(instance).catch( (err) => {

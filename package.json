@@ -12,14 +12,16 @@
   },
   "name": "fediverse-imagebot",
   "version": "0.1.0",
-  "description": "Imagebot for the fediverse (Pleroma, Mastodon, Misskey)",
+  "description": "Image bot for the fediverse (Pleroma, Mastodon, Misskey)",
   "main": "dist/bot.js",
   "scripts": {
-    "build": "npm run clean && tsc",
+    "build": "yarn run clean && tsc",
     "clean": "rm -rf dist",
+    "token": "node ./dist/gen-token.js",
     "lint": "eslint --ext .ts src",
-    "test": "echo \"No tests yet!\" && exit 0",
-    "gen-token": "node ./dist/gen-token.js"
+    "bot": "node ./dist/bot.js",
+    "test": "echo \"No tests yet!\" && exit 0"
+   
   },
   "repository": "https://git.freecumextremist.com/NotSam/fediverse-imagebot.git",
   "author": "Sam Therapy <sam@samtherapy.net>",
