@@ -3,13 +3,21 @@ type: docker
 name: default
 
 steps:
+
 - name: lint
   image: node
   commands:
   - yarn
   - yarn lint
 
+- name: build
+  image: node
+  commands:
+  - yarn
+  - yarn build
+
 - name: test
   image: node
   commands: 
    - yarn
+   - yarn test

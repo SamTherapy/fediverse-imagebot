@@ -1,0 +1,8 @@
+// This is just a mock of what the config should look like
+// Run yarn build && yarn gen-token to generate the configuration.
+{
+  "instance": "INSTANCE_URL", // example https://test.com
+  "type": "INSTANCE_TYPE", // examples: "mastodon", "misskey", "pleroma"
+  "accessToken": "ACCESS_TOKEN",
+  "refreshToken": "REFRESH_TOKEN"
+}
