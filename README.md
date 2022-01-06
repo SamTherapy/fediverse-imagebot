@@ -40,7 +40,7 @@ You're done! The bot should post a local image to the fediverse instance of your
 The bot can be automated to post images at set times using a cronjob. \
 Example cron configuration:
 ```
-0 * * * * cd /path/to/fediverse-imagebot && yarn local -m "Message"
+0 * * * * cd /path/to/fediverse-imagebot && /usr/local/bin/yarn local -m "Message"
 ```
 This example will run the bot every hour on the hour with the post message `Message`.
 
