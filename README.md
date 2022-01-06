@@ -32,7 +32,7 @@ Should be compatible with Mastodon, Misskey and Pleroma!
 8. Run the bot: \
 `yarn local`
 
-You're done! The bot should post an image to the fediverse instance of your choosing!
+You're done! The bot should post a local image to the fediverse instance of your choosing!
 
 ## Automating the bot
 *TODO: Elaborate more* 
@@ -43,6 +43,8 @@ Example cron configuration:
 0 * * * * cd /path/to/fediverse-imagebot && yarn local -m "Message"
 ```
 This example will run the bot every hour on the hour with the post message `Message`.
+
+An example of this configuration can be found at https://froth.zone/rinbot.
 ## Additional information
 Additional help can be found by running `yarn local -h` or `yarn token -h`.
 
