@@ -13,13 +13,13 @@
   "name": "fediverse-imagebot",
   "version": "0.1.0",
   "description": "Image bot for the fediverse (Pleroma, Mastodon, Misskey)",
-  "main": "dist/bot.js",
+  "main": "dist/local.js",
   "scripts": {
     "build": "yarn run clean && tsc",
     "clean": "rm -rf dist",
     "token": "node ./dist/gen-token.js",
     "lint": "eslint --ext .ts src",
-    "bot": "node ./dist/bot.js",
+    "local": "node ./dist/local.js",
     "test": "echo \"No tests yet!\" && exit 0"
    
   },

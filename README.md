@@ -2,12 +2,13 @@
 
 [![Build Status](https://ci.rint.osaka/api/badges/NotSam/fediverse-imagebot/status.svg)](https://ci.rint.osaka/NotSam/fediverse-imagebot)
 
-A bot that posts images to the Fediverse.
+A bot that posts (currently only local) images to the Fediverse.
 
 Should be compatible with Mastodon, Misskey and Pleroma!
 
 ## Quick start guide
 1. You need to have `npm` and `nodejs` installed.
+- Node 15 or greater is required.
 
 2. Install `yarn`: \
 `npm install --global yarn`
@@ -29,7 +30,7 @@ Should be compatible with Mastodon, Misskey and Pleroma!
 - By default the bot will look for SFW images at `images/sfw` and NSFW images at `images/nsfw`. This can be configured.
 
 8. Run the bot: \
-`yarn bot`
+`yarn local`
 
 You're done! The bot should post an image to the fediverse instance of your choosing!
 
@@ -39,10 +40,10 @@ You're done! The bot should post an image to the fediverse instance of your choo
 The bot can be automated to post images at set times using a cronjob. \
 Example cron configuration:
 ```
-0 * * * * cd /path/to/fediverse-imagebot && yarn bot -m "Message"
+0 * * * * cd /path/to/fediverse-imagebot && yarn local -m "Message"
 ```
 This example will run the bot every hour on the hour with the post message `Message`.
 ## Additional information
-Additional help can be found by running `yarn bot -h` or `yarn token -h`.
+Additional help can be found by running `yarn local -h` or `yarn token -h`.
 
 
