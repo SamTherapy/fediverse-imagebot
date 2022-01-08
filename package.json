@@ -21,7 +21,6 @@
     "lint": "eslint --ext .ts src",
     "local": "node ./dist/local.js",
     "test": "echo \"No tests yet!\" && exit 0"
-   
   },
   "repository": "https://git.freecumextremist.com/NotSam/fediverse-imagebot.git",
   "author": "Sam Therapy <sam@samtherapy.net>",

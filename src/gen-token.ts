@@ -79,6 +79,7 @@ callDetector(instance).then(type => {
                 })
                 .catch((err: Error) => { // catch for fetchAccessToken
                     console.error("Access Token fetch failed.");
+                    console.error("Run with -v to see the full error.");
                     if (args.verbose) 
                         console.error(err);
                     exit(1);
@@ -86,6 +87,7 @@ callDetector(instance).then(type => {
         })
         .catch((err: Error) => { // catch for registerApp
             console.error("App registration failure!");
+            console.error("Run with -v to see the full error.");
             if (args.verbose)
                 console.error(err);
             exit(1);
@@ -96,6 +98,7 @@ async function callDetector(instance: string) {
     const type = await detector(instance).catch( (err) => {
         console.error("This does not seem to be a valid instance!");
         console.error("Supported instance types: Mastodon, Misskey, Pleroma");
+        console.error("Run with -v to see the full error.");
         if (args.verbose)
             console.error(err);
         exit(1);

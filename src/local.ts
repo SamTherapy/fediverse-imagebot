@@ -24,24 +24,16 @@ const optionDefinitions = [
         name: "config",
         type: String,
         alias: "c",
-        description: "Path to the configuration file. (default: ./config.json)",
+        description: "Path to the JSON configuration file. (default: ./config.json)",
         defaultValue: "./config.json",
-        typeLabel: "<file>"
+        typeLabel: "<file.json>"
     },
     {
-        name: "sfw_directory",
+        name: "directory",
         type: String,
-        alias: "s",
-        description: "The directory of (SFW) images for the bot to post. (default: ./sfw)",
-        defaultValue: "./images/sfw",
-        typeLabel: "<folder>"
-    },
-    {
-        name: "nsfw_directory",
-        type: String,
-        alias: "n",
-        description: "The directory of (NSFW) images for the bot to post. If it chooses these, they will be marked sensitive. (default: ./nsfw)",
-        defaultValue: "./images/nsfw",
+        alias: "d",
+        description: "The directory of images to upload. (default: ./images)",
+        defaultValue: "./images",
         typeLabel: "<folder>"
     },
     {
@@ -73,53 +65,80 @@ if (args.help) {
     console.log(usage);
     exit(0);
 }
+
+if (args.verbose) {
+    console.log("Running in verbose mode.");
+    console.log();
+}
+
 // JSON object read from config file
 const data = JSON.parse(fs.readFileSync("./config.json", "utf8"));
 
-const sfw_files = fs.readdirSync(args.sfw_directory);
-const nsfw_files = fs.readdirSync(args.nsfw_directory);
+const sfw_files = fs.readdirSync(args.directory + "/sfw");
+const nsfw_files = fs.readdirSync(args.directory + "/nsfw");
 const random = Math.floor(Math.random() * (sfw_files.length + nsfw_files.length));
 
 // Get image from directory and mark it as sensitive if it's in the nsfw directory
 let image: fs.ReadStream;
-let sensitive: boolean;
+let sensitivity: boolean;
 if (random >= sfw_files.length) {
-    // Random Image is NSFW, mark it sensitive
-    image = fs.createReadStream(args.nsfw_directory + "/" + nsfw_files[ random - sfw_files.length ]);
-    sensitive = true;
+    // Image is NSFW, mark it sensitive
+    image = fs.createReadStream(args.directory + "/nsfw" + nsfw_files[ random - sfw_files.length ])
+        .on("error", (err: Error) => {
+            console.log("Error reading image from NSFW directory: " + err.message);
+            if (args.verbose) {
+                console.error("--BEGIN FULL ERROR--");
+                console.error(err);
+            } else 
+                console.error("Run with -v to see the full error.");
+            exit(1);
+        });
+    sensitivity = true;
 }
 else {
     // Image is SFW, mark it not sensitive
-    image = fs.createReadStream(args.sfw_directory + "/" + sfw_files[ random ]);
-    sensitive = false;
+    image = fs.createReadStream(args.directory + "/sfw/" + sfw_files[ random ])
+        .on("error", (err: Error) => {
+            console.log("Error reading image from SFW directory:" + err.message);
+            if (args.verbose) {
+                console.error("--BEGIN FULL ERROR--");
+                console.error(err);
+            } else 
+                console.error("Run with -v to see the full error.");
+            exit(1);
+        });
+    sensitivity = false;
 }
-    
+
 const client = generator(data.type, data.instance, data.accessToken);
 client.uploadMedia(image).then((res: Response<Entity.Attachment>) => {
     client.postStatus(args.message, {
         media_ids: [ res.data.id ],
         visibility: "unlisted",
-        sensitive: sensitive
+        sensitive: sensitivity
     }
     ).then((res: Response<Entity.Status>) => {
         console.log("Successfully posted to " + data.instance);
         if (args.verbose) 
-            console.log(console.log(res.data));
+            console.log(res.data);
         exit(0);
     }
     ).catch((err: Error) => {
-        console.error("Error posting to " + data.instance);
-        console.error("Run with -v to see the full error.");
-        if (args.verbose)
+        console.error("Error posting to " + data.instance + ": " + err.message);
+        if (args.verbose) {
+            console.error("--BEGIN FULL ERROR--");
             console.error(err);
-        exit(1);
+        } else 
+            console.error("Run with -v to see the full error.");
     }
     );
 }).catch((err: Error) => {
-    console.error("Error uploading image to " + data.instance);
-    console.error("Run with -v to see the full error.");
-    if (args.verbose)
+    console.error("Error uploading image to " + data.instance + ": " + err.message);
+    if (args.verbose) {
+        console.error("--BEGIN FULL ERROR--");
         console.error(err);
+    } else 
+        console.error("Run with -v to see the full error.");
     exit(1);
 });
 
