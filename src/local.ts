@@ -72,10 +72,39 @@ if (args.verbose) {
 }
 
 // JSON object read from config file
-const data = JSON.parse(fs.readFileSync("./config.json", "utf8"));
+let data: {
+    instance: string,
+    type: "misskey" | "mastodon" | "pleroma",
+    accessToken: string,
+    refreshToken: string | null
+};
 
-const sfw_files = fs.readdirSync(args.directory + "/sfw");
-const nsfw_files = fs.readdirSync(args.directory + "/nsfw");
+try {
+    data = JSON.parse(fs.readFileSync(args.config, "utf8"));
+    if (args.verbose) {
+        console.log(`Config: ${JSON.stringify(data)}`);
+    }
+}
+catch (e: unknown) {
+    console.error(`Error reading config file: ${e}`);
+    exit(1);
+}
+let sfw_files: string[] = [];
+try {
+    sfw_files = fs.readdirSync(args.directory + "/sfw");
+}
+catch (e: unknown) {
+    console.error(`Error reading SFW image directory: ${e}`);
+    exit(1);
+}
+let nsfw_files: string[] = [];
+try {
+    nsfw_files = fs.readdirSync(args.directory + "/nsfw");
+}
+catch (e: unknown) {
+    console.error(`Error reading NSFW image directory: ${e}`);
+    exit(1);
+}
 const random = Math.floor(Math.random() * (sfw_files.length + nsfw_files.length));
 
 // Get image from directory and mark it as sensitive if it's in the nsfw directory
