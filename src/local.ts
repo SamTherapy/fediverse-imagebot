@@ -83,9 +83,9 @@ let image: fs.ReadStream;
 let sensitivity: boolean;
 if (random >= sfw_files.length) {
     // Image is NSFW, mark it sensitive
-    image = fs.createReadStream(args.directory + "/nsfw" + nsfw_files[ random - sfw_files.length ])
+    image = fs.createReadStream(args.directory + "/nsfw/" + nsfw_files[ random - sfw_files.length ])
         .on("error", (err: Error) => {
-            console.log("Error reading image from NSFW directory: " + err.message);
+            console.error("Error reading image from NSFW directory: " + err.message);
             if (args.verbose) {
                 console.error("--BEGIN FULL ERROR--");
                 console.error(err);
@@ -99,7 +99,7 @@ else {
     // Image is SFW, mark it not sensitive
     image = fs.createReadStream(args.directory + "/sfw/" + sfw_files[ random ])
         .on("error", (err: Error) => {
-            console.log("Error reading image from SFW directory:" + err.message);
+            console.error("Error reading image from SFW directory:" + err.message);
             if (args.verbose) {
                 console.error("--BEGIN FULL ERROR--");
                 console.error(err);
@@ -112,6 +112,8 @@ else {
 
 const client = generator(data.type, data.instance, data.accessToken);
 client.uploadMedia(image).then((res: Response<Entity.Attachment>) => {
+    if (args.verbose)
+        console.log(res.data);
     client.postStatus(args.message, {
         media_ids: [ res.data.id ],
         visibility: "unlisted",
