@@ -27,7 +27,7 @@ Should be compatible with Mastodon, Misskey and Pleroma!
 - `yarn token` will generate a configuration file located at `config.json`
 
 7. Put images in the `images` folder.
-- By default the bot will look for SFW images at `images/sfw` and NSFW images at `images/nsfw`. This can be configured.
+- By default the bot will look for SFW images at `images/sfw` and NSFW images at `images/nsfw`. This can be configured with the `-d` flag.
 
 8. Run the bot: \
 `yarn local`
@@ -42,7 +42,7 @@ Example cron configuration:
 ```
 0 * * * * cd /path/to/fediverse-imagebot && /usr/local/bin/yarn local -m "Message"
 ```
-This example will run the bot every hour on the hour with the post message `Message`.
+This example will run the bot every hour on the hour with the post message `Message` using images from the default `images` directory.
 
 An example of this configuration can be found at https://froth.zone/rinbot.
 ## Additional information

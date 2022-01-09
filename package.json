@@ -11,7 +11,7 @@
     "typescript": "^4.5.4"
   },
   "name": "fediverse-imagebot",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "description": "Image bot for the fediverse (Pleroma, Mastodon, Misskey)",
   "main": "dist/local.js",
   "scripts": {

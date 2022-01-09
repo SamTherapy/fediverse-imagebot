@@ -72,7 +72,7 @@ if (args.verbose) {
 }
 
 // JSON object read from config file
-let data: {
+let config: {
     instance: string,
     type: "misskey" | "mastodon" | "pleroma",
     accessToken: string,
@@ -80,9 +80,9 @@ let data: {
 };
 
 try {
-    data = JSON.parse(fs.readFileSync(args.config, "utf8"));
+    config = JSON.parse(fs.readFileSync(args.config, "utf8"));
     if (args.verbose) {
-        console.log(`Config: ${JSON.stringify(data)}`);
+        console.log(`Config: ${JSON.stringify(config)}`);
     }
 }
 catch (e: unknown) {
@@ -139,7 +139,7 @@ else {
     sensitivity = false;
 }
 
-const client = generator(data.type, data.instance, data.accessToken);
+const client = generator(config.type, config.instance, config.accessToken);
 client.uploadMedia(image).then((res: Response<Entity.Attachment>) => {
     if (args.verbose)
         console.log(res.data);
@@ -149,22 +149,21 @@ client.uploadMedia(image).then((res: Response<Entity.Attachment>) => {
         sensitive: sensitivity
     }
     ).then((res: Response<Entity.Status>) => {
-        console.log("Successfully posted to " + data.instance);
+        console.log("Successfully posted to " + config.instance);
         if (args.verbose) 
             console.log(res.data);
         exit(0);
     }
     ).catch((err: Error) => {
-        console.error("Error posting to " + data.instance + ": " + err.message);
+        console.error("Error posting to " + config.instance + ": " + err.message);
         if (args.verbose) {
             console.error("--BEGIN FULL ERROR--");
             console.error(err);
         } else 
             console.error("Run with -v to see the full error.");
-    }
-    );
+    });
 }).catch((err: Error) => {
-    console.error("Error uploading image to " + data.instance + ": " + err.message);
+    console.error("Error uploading image to " + config.instance + ": " + err.message);
     if (args.verbose) {
         console.error("--BEGIN FULL ERROR--");
         console.error(err);
