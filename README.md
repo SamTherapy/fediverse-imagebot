@@ -1,6 +1,6 @@
 # fediverse-imagebot
 
-[![Build Status](https://ci.rint.osaka/api/badges/NotSam/fediverse-imagebot/status.svg)](https://ci.rint.osaka/NotSam/fediverse-imagebot)
+[![Build Status](https://ci.git.froth.zone/api/badges/Sam/fediverse-imagebot/status.svg)](https://ci.git.froth.zone/Sam/fediverse-imagebot)
 
 A bot that posts (currently only local) images to the Fediverse.
 
