@@ -18,7 +18,7 @@ Should be compatible with Mastodon, Misskey and Pleroma!
 `git clone https://git.freecumextremist.com/NotSam/fediverse-imagebot.git`
 
 4. Install dependencies: \
-`yarn`
+`yarn --production`
 
 5. Build: \
 `yarn build`
@@ -44,7 +44,9 @@ Example cron configuration:
 ```
 This example will run the bot every hour on the hour with the post message `Message` using images from the default `images` directory.
 
-An example of this configuration can be found at https://froth.zone/rinbot.
+An example of this pleroma configuration can be found at https://froth.zone/rinbot.
+<iframe allowfullscreen sandbox="allow-top-navigation allow-scripts" width="400" height="400" src="https://fedifeed.com/api/v1/feed?user=rinbot&instance=https%3A%2F%2Ffroth.zone&instance_type=&theme=pleroma&size=100&header=true&replies=false&boosts=false"></iframe>
+
 ## Additional information
 Additional help can be found by running `yarn local -h` or `yarn token -h`.
 
