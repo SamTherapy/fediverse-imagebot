@@ -14,7 +14,7 @@
         "clean": "rm -rf dist",
         "lint": "eslint --ext .ts src",
         "local": "node ./dist/local.js",
-        "package": "pkg dist/token.js -t node16-linux-x64,node16-macos-x64,node16-win-x64 -o dist/imagebot-x64 -C Gzip",
+        "package": "pkg dist/*.js -t node16-linux-x64,node16-macos-x64,node16-win-x64 -o dist/imagebot-x64 -C Gzip",
         "test": "echo \"No tests yet!\" && exit 0"
     },
     "repository": "https://git.froth.zone/Sam/fediverse-imagebot",
