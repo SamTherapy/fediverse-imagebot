@@ -59,7 +59,7 @@ if (args.help) {
             optionList: optionDefinitions
         },
         {
-            content: "Project home: {underline https://git.freecumextremist.com/NotSam/fediverse-imagebot}"
+            content: "Project home: {underline https://git.froth.zone/Sam/fediverse-imagebot}"
         }
     ]);
     console.log(usage);

@@ -4,9 +4,12 @@
 
 A bot that posts (currently only local) images to the Fediverse.
 
-Should be compatible with Mastodon, Misskey and Pleroma!
+Compatible with Mastodon, Misskey and Pleroma!
 
-## Quick start guide
+## Downloading pre-built binaries
+Download prebuilt binaries from [here](https://git.froth.zone/Sam/fediverse-imagebot/releases/latest) (currently only supports x64), or build from source, instructions below.
+
+## Running from Source
 1. You need to have `npm` and `nodejs` installed.
 - Node 15 or greater is required.
 
@@ -23,16 +26,16 @@ Should be compatible with Mastodon, Misskey and Pleroma!
 5. Build: \
 `yarn build`
 
-6. Obtain a token. This can be done with an external tool or obtained by running `yarn token` and following the directions.
-- `yarn token` will generate a configuration file located at `config.json`
-
-7. Put images in the `images` folder.
-- By default the bot will look for SFW images at `images/sfw` and NSFW images at `images/nsfw`. This can be configured with the `-d` flag.
-
 8. Run the bot: \
 `yarn local`
 
 You're done! The bot should post a local image to the fediverse instance of your choosing!
+
+## Running the bot
+1. Obtain a token. I have another tool that does this for you, which can be found [here](https://git.froth.zone/Sam/js-feditoken) and put it in `config.json`, following the sample json file.
+
+2. Put images in the `images` folder.
+- By default the bot will look for SFW images at `images/sfw` and NSFW images at `images/nsfw`. This can be configured with the `-d` flag.
 
 ## Automating the bot
 *TODO: Elaborate more* 
@@ -45,9 +48,3 @@ Example cron configuration:
 This example will run the bot every hour on the hour with the post message `Message` using images from the default `images` directory.
 
 An example of this pleroma configuration can be found at https://froth.zone/rinbot.
-<iframe allowfullscreen sandbox="allow-top-navigation allow-scripts" width="400" height="400" src="https://fedifeed.com/api/v1/feed?user=rinbot&instance=https%3A%2F%2Ffroth.zone&instance_type=&theme=pleroma&size=100&header=true&replies=false&boosts=false"></iframe>
-
-## Additional information
-Additional help can be found by running `yarn local -h` or `yarn token -h`.
-
-

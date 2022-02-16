@@ -3,18 +3,54 @@ type: docker
 name: default
 
 steps:
-- name: lint
+
+- name: dependencies
   image: node
   commands:
   - yarn
+
+- name: lint
+  image: node
+  depends_on:
+  - dependencies
+  commands:
   - yarn lint
 
 - name: build
   image: node
+  depends_on:
+  - dependencies
   commands:
   - yarn build
 
 - name: test
   image: node
+  depends_on:
+  - build
   commands: 
    - yarn test
+
+- name: package
+  image: node
+  depends_on:
+  - lint
+  - test
+  commands:
+  - yarn package
+  when:
+    event: 
+    - tag
+
+- name: Release
+  image: plugins/gitea-release
+  depends_on:
+    - package
+  settings:
+    api_key: 
+      from_secret: release_api_key
+    base_url: https://git.froth.zone
+    files:
+      - dist/imagebot-*
+  when:
+    event: 
+      - tag
