@@ -1,174 +1,53 @@
-#!/usr/bin/env node
-import commandLineArgs from "command-line-args";
-import commandLineUsage from "command-line-usage";
-import * as fs from "fs";
-import generator, { Entity, Response } from "megalodon";
+import { createReadStream, ReadStream } from "fs";
+import { readdir } from "fs/promises";
 import { exit } from "process";
 
+import args from "./helpers/cli";
+import crashHandler from "./helpers/errors";
+import post from "./post";
 
+export default async function getLocalImage() {
+    const sfw_files: string[] = await readdir(`${args.directory}/sfw`).catch(e => {
+        crashHandler("Error reading SFW image directory.", e);
+        return [];
+    });
+    const nsfw_files: string[] = await readdir(`${args.directory}/nsfw`).catch(e => {
+        crashHandler("Error reading NSFW image directory.", e);
+        return [];
+    });
+    const random = Math.floor(Math.random() * (sfw_files.length + nsfw_files.length));
 
-const optionDefinitions = [
-    {
-        name: "help",
-        type: Boolean,
-        alias: "h",
-        description: "Print this usage guide."
-    },
-    {
-        name: "verbose",
-        type: Boolean,
-        alias: "v",
-        description: "Print debugging output."
-    },
-    {
-        name: "config",
-        type: String,
-        alias: "c",
-        description: "Path to the JSON configuration file. (default: ./config.json)",
-        defaultValue: "./config.json",
-        typeLabel: "<file.json>"
-    },
-    {
-        name: "directory",
-        type: String,
-        alias: "d",
-        description: "The directory of images to upload. (default: ./images)",
-        defaultValue: "./images",
-        typeLabel: "<folder>"
-    },
-    {
-        name: "message",
-        type: String,
-        alias: "m",
-        description: "The message to post with the image.",
-        defaultValue: "",
-        typeLabel: "<message>"
+    // Filler that is used to get a random file from the directories
+    let image: ReadStream;
+    let sensitivity: boolean;
+    let file = "";
+
+    if (random >= sfw_files.length) {
+        // Image is NSFW, mark it sensitive
+        file = `${args.directory}/nsfw/${nsfw_files[ random - sfw_files.length ]}`;
+        image = createReadStream(file)
+            .on("error", (err: Error) => {
+                crashHandler(`Error reading file "${file}"`, err);
+            });
+        sensitivity = true;
     }
-];
+    else {
+        // Image is SFW, mark it not sensitive
+        file = `${args.directory}/sfw/${sfw_files[ random]}`;
+        image = createReadStream(file)
+            .on("error", (err: Error) => {
+                crashHandler(`Error reading file "${file}"`, err);
+            });
+        sensitivity = false;
+    }
 
-const args = commandLineArgs(optionDefinitions);
+    if (args.verbose) {
+        console.error(`File being sent: ${file}`);
+        console.error(`Sensitivity: ${sensitivity}`);
+    }
 
-if (args.help) {
-    const usage = commandLineUsage([
-        {
-            header: "Fediverse Image Bot",
-            content: "A bot that posts images from a directory to the Fediverse."
-        },
-        {
-            header: "Options",
-            optionList: optionDefinitions
-        },
-        {
-            content: "Project home: {underline https://git.froth.zone/Sam/fediverse-imagebot}"
-        }
-    ]);
-    console.log(usage);
+    await post(image, sensitivity);
     exit(0);
 }
 
-if (args.verbose) {
-    console.log("Running in verbose mode.");
-    console.log();
-}
-
-// JSON object read from config file
-let config: {
-    instance: string,
-    type: "misskey" | "mastodon" | "pleroma",
-    accessToken: string,
-    refreshToken: string | null
-};
-
-try {
-    config = JSON.parse(fs.readFileSync(args.config, "utf8"));
-    if (args.verbose) {
-        console.log(`Config: ${JSON.stringify(config)}`);
-    }
-}
-catch (e: unknown) {
-    console.error(`Error reading config file: ${e}`);
-    exit(1);
-}
-let sfw_files: string[] = [];
-try {
-    sfw_files = fs.readdirSync(args.directory + "/sfw");
-}
-catch (e: unknown) {
-    console.error(`Error reading SFW image directory: ${e}`);
-    exit(1);
-}
-let nsfw_files: string[] = [];
-try {
-    nsfw_files = fs.readdirSync(args.directory + "/nsfw");
-}
-catch (e: unknown) {
-    console.error(`Error reading NSFW image directory: ${e}`);
-    exit(1);
-}
-const random = Math.floor(Math.random() * (sfw_files.length + nsfw_files.length));
-
-// Get image from directory and mark it as sensitive if it's in the nsfw directory
-let image: fs.ReadStream;
-let sensitivity: boolean;
-if (random >= sfw_files.length) {
-    // Image is NSFW, mark it sensitive
-    image = fs.createReadStream(args.directory + "/nsfw/" + nsfw_files[ random - sfw_files.length ])
-        .on("error", (err: Error) => {
-            console.error("Error reading image from NSFW directory: " + err.message);
-            if (args.verbose) {
-                console.error("--BEGIN FULL ERROR--");
-                console.error(err);
-            } else 
-                console.error("Run with -v to see the full error.");
-            exit(1);
-        });
-    sensitivity = true;
-}
-else {
-    // Image is SFW, mark it not sensitive
-    image = fs.createReadStream(args.directory + "/sfw/" + sfw_files[ random ])
-        .on("error", (err: Error) => {
-            console.error("Error reading image from SFW directory:" + err.message);
-            if (args.verbose) {
-                console.error("--BEGIN FULL ERROR--");
-                console.error(err);
-            } else 
-                console.error("Run with -v to see the full error.");
-            exit(1);
-        });
-    sensitivity = false;
-}
-
-const client = generator(config.type, config.instance, config.accessToken);
-client.uploadMedia(image).then((res: Response<Entity.Attachment>) => {
-    if (args.verbose)
-        console.log(res.data);
-    client.postStatus(args.message, {
-        media_ids: [ res.data.id ],
-        visibility: "unlisted",
-        sensitive: sensitivity
-    }
-    ).then((res: Response<Entity.Status>) => {
-        console.log("Successfully posted to " + config.instance);
-        if (args.verbose) 
-            console.log(res.data);
-        exit(0);
-    }
-    ).catch((err: Error) => {
-        console.error("Error posting to " + config.instance + ": " + err.message);
-        if (args.verbose) {
-            console.error("--BEGIN FULL ERROR--");
-            console.error(err);
-        } else 
-            console.error("Run with -v to see the full error.");
-    });
-}).catch((err: Error) => {
-    console.error("Error uploading image to " + config.instance + ": " + err.message);
-    if (args.verbose) {
-        console.error("--BEGIN FULL ERROR--");
-        console.error(err);
-    } else 
-        console.error("Run with -v to see the full error.");
-    exit(1);
-});
-
+getLocalImage();

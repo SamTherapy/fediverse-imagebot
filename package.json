@@ -6,15 +6,20 @@
         "typescript": "^4.5.5"
     },
     "name": "fediverse-imagebot",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Image bot for the fediverse (Pleroma, Mastodon, Misskey)",
     "main": "dist/local.js",
+    "bin": "dist/local.js",
+    "pkg": {
+        "scripts": "build/**/*.js",
+        "targets": ["node16-linux-x64","node16-macos-x64","node16-win-x64"]
+    },
     "scripts": {
         "build": "yarn run clean && tsc",
         "clean": "rm -rf dist",
         "lint": "eslint --ext .ts src",
         "local": "node ./dist/local.js",
-        "package": "pkg dist/*.js -t node16-linux-x64,node16-macos-x64,node16-win-x64 -o dist/imagebot-x64 -C Gzip",
+        "package": "pkg . -o dist/imagebot-x64 -C Gzip",
         "test": "echo \"No tests yet!\" && exit 0"
     },
     "repository": "https://git.froth.zone/Sam/fediverse-imagebot",
