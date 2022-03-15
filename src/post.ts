@@ -1,43 +1,50 @@
 import { ReadStream } from "fs";
+// import { Response as http_response } from "got-cjs";
 import generator, { Entity, Response } from "megalodon";
+import { Readable } from "stream";
+import args from "./helpers/cli.js";
+import crashHandler from "./helpers/error.js";
+import { config } from "./helpers/types.js";
 
-import config from "./helpers/config";
-import crashHandler from "./helpers/errors";
-import args from "./helpers/cli";
+/**
+ * Uploads an image to a fediverse instance
+ * @param image The image to upload
+ * @param sensitivity The sensitivity of the image
+ * @param cfg Configuration object (see the type definition)
+ * @returns { Promise<void> } Nothing
+ */
+export default async function postImage(
+  image: ReadStream | Readable,
+  sensitivity: boolean,
+  cfg: config
+): Promise<void> {
+  // Make a client to upload
+  const client = generator(
+    cfg.type,
+    cfg.instance,
+    cfg.accessToken,
+    cfg.refreshToken
+  );
 
-// Uploads an image to the Fediverse
-// image: The image to upload
-// sensitivity: Whether or not the image is sensitive
-export default async function post(image: ReadStream, sensitivity: boolean) {
-    // Get config
-    const cfg: {
-        instance: string,
-        type: "misskey" | "mastodon" | "pleroma",
-        accessToken: string,
-        refreshToken: string | null
-    } = await config();
-
-    // Make a client to upload
-    const client = generator(cfg.type, cfg.instance, cfg.accessToken, cfg.refreshToken);
-
-    // Upload the image
-    const res: Response<Entity.Attachment> = await client.uploadMedia(image).catch(err => {
-        crashHandler("Error uploading image.", err);
-        return ({} as Response<Entity.Attachment>);
+  // Upload the image
+  const res: Response<Entity.Attachment> = await client
+    .uploadMedia(image)
+    .catch((err: Error) => {
+      crashHandler("Error uploading image.", err);
+      return {} as Response<Entity.Attachment>;
     });
 
-    // Make a status with the image
-    await client.postStatus(args.message,
-        {
-            media_ids: [ res.data.id ],
-            // Change this to make the post visibility you wish
-            visibility: "unlisted",
-            sensitive: sensitivity
-        }
-    ).catch(err => {
-        crashHandler("Error posting status.", err);
+  // Make a status with the image
+  await client
+    .postStatus(cfg.message, {
+      media_ids: [res.data.id],
+      // Change this to make the post visibility you wish
+      visibility: cfg.visibility,
+      sensitive: sensitivity,
+    })
+    .catch((err: Error) => {
+      crashHandler("Error posting status.", err);
     });
-    if (args.verbose)
-        console.log(`Successfully posted to ${cfg.instance}`);
-    return;
+  if (args.verbose) console.log(`Successfully posted to ${cfg.instance}`);
+  return;
 }

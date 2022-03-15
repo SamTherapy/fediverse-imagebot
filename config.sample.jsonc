@@ -1,8 +1,30 @@
-// This is just a mock of what the config should look like
-// Run yarn build && yarn gen-token to generate the configuration.
 {
+  //Instance and token settings
   "instance": "INSTANCE_URL", // example https://test.com
   "type": "INSTANCE_TYPE", // examples: "mastodon", "misskey", "pleroma"
-  "accessToken": "ACCESS_TOKEN",
-  "refreshToken": "REFRESH_TOKEN" // This can be left blank, as it is currently not used for anything.
+  "accessToken": "ACCESS_TOKEN", // Get a token from https://git.froth.zone/Sam/js-feditoken
+  "refreshToken": "REFRESH_TOKEN", // optional
+
+  // Post settings
+  "message": "", // example: "Hello, world!"
+  "visibility": "unlisted", // example: "public", "unlisted", "private", "direct"
+
+  "remote": false, // **Set this to `true` if you want to serve a file from a booru!**
+  /* THESE SETTINGS WILL BE IGNORED IF YOU SET `remote` TO `false` */
+  "booru": "safebooru.org", // example: "safebooru.org"
+  "tags": [""], // example: ["tohsaka_rin", "-feet"]
+  "rating": "safe", // example: "safe", "questionable", "explicit"
+  /* END OF SETTINGS THAT WILL BE IGNORED IF YOU SET `remote` TO `false` */
+
+  /* THESE SETTINGS WILL BE IGNORED IF YOU SET `remote` TO `true` */
+  "directory": "./images" // example: "./images"
+  /*
+    Directory structure should be as follows:
+    folder/
+      - sfw/
+        - image1.jpg
+      - nsfw/
+        - image1.jpg
+  */
+  /* END OF SETTINGS THAT WILL BE IGNORED IF YOU SET `remote` TO `true` */
 }
