@@ -20,7 +20,8 @@ There are currently two ways to do this, either with a pre-built binary or build
 
 ### Downloading pre-built binaries
 
-Download prebuilt binaries from [here](https://git.froth.zone/Sam/fediverse-imagebot/releases/latest). (currently only supports x86_64)
+Download prebuilt binaries from [here](https://git.froth.zone/Sam/fediverse-imagebot/releases/latest). (currently supports x86_64 and arm64 on Linux 
+[glibc or musl], macOS and Windows)
 
 1. Run the bot with the `-w` flag to have it generate a configuration file to the local directory.
 
