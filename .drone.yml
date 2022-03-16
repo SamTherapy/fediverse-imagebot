@@ -1,49 +1,44 @@
+---
 kind: pipeline
 type: docker
-name: default
+name: Build (amd64)
+platform:
+  arch: amd64
 
 steps:
-  - name: dependencies
+  - name: Get Dependencies
     image: node
     commands:
       - yarn --check-cache
 
-  - name: lint
+  - name: Lint
     image: node
     depends_on:
-      - dependencies
+      - Get Dependencies
     commands:
       - yarn lint:ci
 
-  - name: build
+  - name: Build
     image: node
     depends_on:
-      - dependencies
+      - Lint
     commands:
       - yarn build
 
-  - name: test
+  - name: Package
     image: node
     depends_on:
-      - build
-    commands:
-      - yarn test
-
-  - name: package
-    image: node
-    depends_on:
-      - lint
-      - test
+      - Lint
     commands:
       - yarn package
     when:
       event:
         - tag
 
-  - name: Release
+  - name: Make Gitea Release
     image: plugins/gitea-release
     depends_on:
-      - package
+      - Package
     settings:
       api_key:
         from_secret: release_api_key
@@ -53,3 +48,54 @@ steps:
     when:
       event:
         - tag
+---
+kind: pipeline
+type: docker
+name: Build (arm64)
+platform:
+  arch: arm64
+
+steps:
+  - name: Get Dependencies
+    image: node
+    commands:
+      - yarn --check-cache
+
+  - name: Lint
+    image: node
+    depends_on:
+      - Get Dependencies
+    commands:
+      - yarn lint:ci
+
+  - name: Build
+    image: node
+    depends_on:
+      - Lint
+    commands:
+      - yarn build
+
+  - name: Package
+    image: node
+    depends_on:
+      - Lint
+    commands:
+      - yarn package
+    when:
+      event:
+        - tag
+
+  - name: Make Gitea Release
+    image: plugins/gitea-release
+    depends_on:
+      - Package
+    settings:
+      api_key:
+        from_secret: release_api_key
+      base_url: https://git.froth.zone
+      files:
+        - dist/imagebot-*
+    when:
+      event:
+        - tag
+

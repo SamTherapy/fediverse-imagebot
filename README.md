@@ -7,16 +7,30 @@ A bot that posts local and booru images to the Fediverse.
 Compatible with Mastodon, Misskey and Pleroma!
 
 ## MIGRATING MAJOR VERSIONS
-See [MIGRATING.md](./MIGRATING.md)
 
-## Boorus supported 
+See [the wiki](https://git.froth.zone/Sam/fediverse-imagebot/wiki/Migrating).
+
+## Boorus supported
+
 The full list of boorus supported is found [here](https://github.com/AtoraSuunva/booru/blob/master/src/sites.json).
 
-## Downloading pre-built binaries
+## Downloading the bot
 
-Download prebuilt binaries from [here](https://git.froth.zone/Sam/fediverse-imagebot/releases/latest) (currently only supports x64), or build from source, instructions below.
+There are currently two ways to do this, either with a pre-built binary or building from source. Both are listed below.
 
-## Running from Source
+### Downloading pre-built binaries
+
+Download prebuilt binaries from [here](https://git.froth.zone/Sam/fediverse-imagebot/releases/latest). (currently only supports x86_64)
+
+1. Run the bot with the `-w` flag to have it generate a configuration file to the local directory.
+
+2. Edit it for your use case.
+
+- If you want to generate a key you can use https://git.froth.zone/Sam/js-feditoken
+
+3. Run the bot by launching the executable!
+
+### Running from Source
 
 1. You need to have `npm` and `nodejs` installed.
 
@@ -39,20 +53,13 @@ Download prebuilt binaries from [here](https://git.froth.zone/Sam/fediverse-imag
 
 6. Edit the config file: \
    `cp config.sample.jsonc config.jsonc`
+
    - If you want to generate a key you can use https://git.froth.zone/Sam/js-feditoken
 
-6. Run the bot: \
+7. Run the bot: \
    `yarn bot`
 
 You're done! The bot should post a local image to the fediverse instance of your choosing!
-
-## Running the bot
-
-1. Obtain a token. I have another tool that does this for you, which can be found [here](https://git.froth.zone/Sam/js-feditoken) and put it in `config.jsonc`, following the sample jsonc file.
-
-2. Put images in the `images` folder.
-
-- By default the bot will look for SFW images at `images/sfw` and NSFW images at `images/nsfw`. This can be configured with the `directory` config setting.
 
 ## Automating the bot
 
