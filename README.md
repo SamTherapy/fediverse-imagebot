@@ -40,8 +40,6 @@ Download prebuilt binaries from [here](https://git.froth.zone/Sam/fediverse-imag
    `corepack enable` \
     Check https://yarnpkg.com/getting-started/install for more information.
 
-- This may be need to ran with `sudo` depending on your installation.
-
 3. Clone the repository: \
    `git clone https://git.froth.zone/Sam/fediverse-imagebot.git`
 
@@ -53,7 +51,6 @@ Download prebuilt binaries from [here](https://git.froth.zone/Sam/fediverse-imag
 
 6. Edit the config file: \
    `cp config.sample.jsonc config.jsonc`
-
    - If you want to generate a key you can use https://git.froth.zone/Sam/js-feditoken
 
 7. Run the bot: \
