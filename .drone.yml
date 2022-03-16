@@ -28,7 +28,7 @@ steps:
   - name: Package
     image: node
     depends_on:
-      - Lint
+      - Build
     commands:
       - yarn package
     when:
@@ -78,7 +78,7 @@ steps:
   - name: Package
     image: node
     depends_on:
-      - Lint
+      - Build
     commands:
       - yarn package
     when:
