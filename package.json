@@ -14,12 +14,7 @@
   "exports": "./dist/index.js",
   "bin": "dist/index.js",
   "pkg": {
-    "scripts": "dist/**/*.js",
-    "targets": [
-      "node16-linux",
-      "node16-macos",
-      "node16-win"
-    ]
+    "scripts": "dist/**/*.js"
   },
   "scripts": {
     "build": "yarn run clean && tsc",
@@ -27,7 +22,7 @@
     "lint": "eslint --ext .ts ./src --fix && prettier --write ./src",
     "lint:ci": "eslint --ext .ts,.js ./src && prettier ./src --check",
     "bot": "node ./dist/index.js",
-    "package": "pkg . -o dist/imagebot-x64 -C Gzip",
+    "package": "pkg . -C Gzip",
     "test": "echo \"No tests yet!\" && exit 0"
   },
   "repository": "https://git.froth.zone/Sam/fediverse-imagebot",

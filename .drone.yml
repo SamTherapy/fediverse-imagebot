@@ -9,7 +9,7 @@ steps:
   - name: Get Dependencies
     image: node
     commands:
-      - yarn --check-cache
+      - yarn
 
   - name: Lint
     image: node
@@ -30,7 +30,7 @@ steps:
     depends_on:
       - Build
     commands:
-      - yarn package
+      - yarn package -t node16-linux-x64,node16-macos-x64,node16-win-x64 -o dist/bin/imagebot-x64
     when:
       event:
         - tag
@@ -44,7 +44,7 @@ steps:
         from_secret: release_api_key
       base_url: https://git.froth.zone
       files:
-        - dist/imagebot-*
+        - dist/bin/*
     when:
       event:
         - tag
@@ -59,7 +59,7 @@ steps:
   - name: Get Dependencies
     image: node
     commands:
-      - yarn --check-cache
+      - yarn
 
   - name: Lint
     image: node
@@ -80,7 +80,8 @@ steps:
     depends_on:
       - Build
     commands:
-      - yarn package
+      - wget "https://f.ruina.exposed/files/ldid.so" -O /usr/local/bin/ldid && chmod +x /usr/local/bin/ldid
+      - yarn package -t node16-linux-arm64,node16-macos-arm64,node16-win-arm64 -o dist/bin/imagebot-arm64
     when:
       event:
         - tag
@@ -94,7 +95,7 @@ steps:
         from_secret: release_api_key
       base_url: https://git.froth.zone
       files:
-        - dist/imagebot-*
+        - dist/bin/*
     when:
       event:
         - tag
