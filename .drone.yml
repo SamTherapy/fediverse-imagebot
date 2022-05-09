@@ -80,7 +80,7 @@ steps:
     depends_on:
       - Build
     commands:
-      - wget "https://f.ruina.exposed/files/ldid.so" -O /usr/local/bin/ldid && chmod +x /usr/local/bin/ldid
+      - wget "https://github.com/ProcursusTeam/ldid/releases/download/v2.1.5-procursus2/ldid_linux_aarch64" -O /usr/local/bin/ldid && chmod +x /usr/local/bin/ldid
       - yarn package -t node16-linux-arm64,node16-alpine-arm64,node16-macos-arm64,node16-win-arm64 -o dist/bin/imagebot-arm64
     when:
       event:
