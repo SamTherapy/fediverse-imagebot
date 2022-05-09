@@ -1,6 +1,6 @@
 # fediverse-imagebot
 
-[![Build Status](https://ci.git.froth.zone/api/badges/Sam/fediverse-imagebot/status.svg)](https://ci.git.froth.zone/Sam/fediverse-imagebot)
+[![Build Status](https://ci.git.froth.zone/api/badges/sam/fediverse-imagebot/status.svg)](https://ci.git.froth.zone/sam/fediverse-imagebot)
 
 A bot that posts local and booru images to the Fediverse.
 
@@ -8,7 +8,7 @@ Compatible with Mastodon, Misskey and Pleroma!
 
 ## MIGRATING MAJOR VERSIONS
 
-See [the wiki](https://git.froth.zone/Sam/fediverse-imagebot/wiki/Migrating).
+See [the wiki](https://git.froth.zone/sam/fediverse-imagebot/wiki/Migrating).
 
 ## Boorus supported
 
@@ -20,14 +20,14 @@ There are currently two ways to do this, either with a pre-built binary or build
 
 ### Downloading pre-built binaries
 
-Download prebuilt binaries from [here](https://git.froth.zone/Sam/fediverse-imagebot/releases/latest). (currently supports x86_64 and arm64 on Linux 
+Download prebuilt binaries from [here](https://git.froth.zone/sam/fediverse-imagebot/releases/latest). (currently supports x86_64 and arm64 on Linux
 [glibc or musl], macOS and Windows)
 
 1. Run the bot with the `-w` flag to have it generate a configuration file to the local directory.
 
 2. Edit it for your use case.
 
-- If you want to generate a key you can use https://git.froth.zone/Sam/js-feditoken
+- If you want to generate a key you can use https://git.froth.zone/sam/js-feditoken
 
 3. Run the bot by launching the executable!
 
@@ -42,7 +42,7 @@ Download prebuilt binaries from [here](https://git.froth.zone/Sam/fediverse-imag
     Check https://yarnpkg.com/getting-started/install for more information.
 
 3. Clone the repository: \
-   `git clone https://git.froth.zone/Sam/fediverse-imagebot.git`
+   `git clone https://git.froth.zone/sam/fediverse-imagebot.git`
 
 4. Install dependencies: \
    `yarn`
@@ -52,7 +52,8 @@ Download prebuilt binaries from [here](https://git.froth.zone/Sam/fediverse-imag
 
 6. Edit the config file: \
    `cp config.sample.jsonc config.jsonc`
-   - If you want to generate a key you can use https://git.froth.zone/Sam/js-feditoken
+
+   - If you want to generate a key you can use https://git.froth.zone/sam/js-feditoken
 
 7. Run the bot: \
    `yarn bot`

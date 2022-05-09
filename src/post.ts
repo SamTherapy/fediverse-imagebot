@@ -10,7 +10,7 @@ import { config } from "./helpers/types.js";
  * Uploads an image to a fediverse instance
  * @param image The image to upload
  * @param sensitivity The sensitivity of the image
- * @param cfg Configuration object (see the type definition)
+ * @param cfg {@link config} object
  * @returns { Promise<void> } Nothing
  */
 export default async function postImage(

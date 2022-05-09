@@ -4,8 +4,7 @@ import args from "./cli.js";
 /**
  * The function that gets called when the program runs into an error.
  * @param msg Custom error message
- * @param e Error object passed in from the error handler (optional),
- * only displays when `args.verbose` is true
+ * @param e Error object passed in from the error handler
  * @returns This function will never return.
  */
 export default function crashHandler(msg: string, e: Error) {
