@@ -500,7 +500,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"booru@npm:^2.5.6":
+"booru@npm:2.5.6":
   version: 2.5.6
   resolution: "booru@npm:2.5.6"
   dependencies:
@@ -664,7 +664,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"command-line-args@npm:^5.2.1":
+"command-line-args@npm:5.2.1":
   version: 5.2.1
   resolution: "command-line-args@npm:5.2.1"
   dependencies:
@@ -676,7 +676,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"command-line-usage@npm:^6.1.3":
+"command-line-usage@npm:6.1.3":
   version: 6.1.3
   resolution: "command-line-usage@npm:6.1.3"
   dependencies:
@@ -1129,18 +1129,18 @@ __metadata:
     "@types/node-fetch": 2.6.1
     "@typescript-eslint/eslint-plugin": 5.22.0
     "@typescript-eslint/parser": 5.22.0
-    booru: ^2.5.6
-    command-line-args: ^5.2.1
-    command-line-usage: ^6.1.3
+    booru: 2.5.6
+    command-line-args: 5.2.1
+    command-line-usage: 6.1.3
     eslint: 8.15.0
     eslint-config-prettier: 8.5.0
     eslint-plugin-prettier: 4.0.0
-    got-cjs: ^12.0.4
-    megalodon: ^4.0.1
+    got-cjs: 12.0.4
+    megalodon: 4.0.1
     pkg: 5.6.0
     prettier: 2.6.2
     strip-json-comments: 3.1.1
-    typescript: ^4.6.4
+    typescript: 4.6.4
   bin:
     fediverse-imagebot: dist/index.js
   languageName: unknown
@@ -1380,7 +1380,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"got-cjs@npm:^12.0.4":
+"got-cjs@npm:12.0.4":
   version: 12.0.4
   resolution: "got-cjs@npm:12.0.4"
   dependencies:
@@ -1703,7 +1703,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"megalodon@npm:^4.0.1":
+"megalodon@npm:4.0.1":
   version: 4.0.1
   resolution: "megalodon@npm:4.0.1"
   dependencies:
@@ -2654,7 +2654,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^4.6.4":
+"typescript@npm:4.6.4":
   version: 4.6.4
   resolution: "typescript@npm:4.6.4"
   bin:
@@ -2674,7 +2674,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.6.4#~builtin<compat/typescript>":
+"typescript@patch:typescript@4.6.4#~builtin<compat/typescript>":
   version: 4.6.4
   resolution: "typescript@patch:typescript@npm%3A4.6.4#~builtin<compat/typescript>::version=4.6.4&hash=bda367"
   bin:
