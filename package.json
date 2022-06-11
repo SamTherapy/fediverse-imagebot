@@ -27,7 +27,7 @@
   },
   "repository": "https://git.froth.zone/Sam/fediverse-imagebot",
   "author": "Sam Therapy <sam@samtherapy.net>",
-  "license": "Unlicense",
+  "license": "0BSD",
   "devDependencies": {
     "@types/command-line-args": "5.2.0",
     "@types/command-line-usage": "5.0.2",

@@ -1,5 +1,4 @@
 import { ReadStream } from "fs";
-// import { Response as http_response } from "got-cjs";
 import generator, { Entity, Response } from "megalodon";
 import { Readable } from "stream";
 import args from "./helpers/cli.js";
@@ -46,5 +45,4 @@ export default async function postImage(
       crashHandler("Error posting status.", err);
     });
   if (args.verbose) console.log(`Successfully posted to ${cfg.instance}`);
-  return;
 }

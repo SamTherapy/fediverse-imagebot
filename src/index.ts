@@ -1,7 +1,7 @@
 import getConfig from "./helpers/config.js";
 import { config } from "./helpers/types.js";
-import getLocalImage from "./local.js";
-import getRemoteImage from "./remote.js";
+import getLocalImage from "./getLocalImage.js";
+import getRemoteImage from "./getRemoteImage.js";
 
 /**
  * Main function
@@ -11,7 +11,6 @@ async function main() {
 
   if (conf.remote) await getRemoteImage(conf);
   else await getLocalImage(conf);
-  return;
 }
 
 // Run the main function, obviously.

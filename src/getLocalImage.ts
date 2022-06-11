@@ -4,7 +4,7 @@ import { exit } from "process";
 import args from "./helpers/cli.js";
 import crashHandler from "./helpers/error.js";
 import { config } from "./helpers/types.js";
-import postImage from "./post.js";
+import postImage from "./postImage.js";
 
 /**
  * Get a local image from the filesystem
