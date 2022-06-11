@@ -6,8 +6,8 @@ import got from "got-cjs";
 import stream from "node:stream";
 import { promisify } from "node:util";
 import { exit } from "process";
-import args from "./helpers/cli.js";
-import crashHandler from "./helpers/error.js";
+import args from "./helpers/args.js";
+import crashHandler from "./helpers/crashHandler.js";
 import { config } from "./helpers/types.js";
 import postImage from "./postImage.js";
 

@@ -1,5 +1,5 @@
 import { exit } from "process";
-import args from "./cli.js";
+import args from "./args.js";
 
 /**
  * The function that gets called when the program runs into an error.

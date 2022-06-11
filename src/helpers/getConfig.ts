@@ -1,7 +1,7 @@
 import { readFile } from "fs/promises";
 import stripJsonComments from "strip-json-comments";
-import args from "./cli.js";
-import crashHandler from "./error.js";
+import args from "./args.js";
+import crashHandler from "./crashHandler.js";
 import { config } from "./types.js";
 
 /**
@@ -9,11 +9,10 @@ import { config } from "./types.js";
  * @returns The config object
  */
 async function readConfig(): Promise<string> {
-  const conf = await readFile(args.config, "utf8").catch((err) => {
+  return readFile(args.config, "utf8").catch((err) => {
     crashHandler("Error reading config file.", err);
     return "CRASH";
   });
-  return conf;
 }
 /**
  * Parses the config file and returns it as a JSON object

@@ -1,8 +1,8 @@
 import { ReadStream } from "fs";
 import generator, { Entity, Response } from "megalodon";
 import { Readable } from "stream";
-import args from "./helpers/cli.js";
-import crashHandler from "./helpers/error.js";
+import args from "./helpers/args.js";
+import crashHandler from "./helpers/crashHandler.js";
 import { config } from "./helpers/types.js";
 
 /**

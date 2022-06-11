@@ -1,4 +1,4 @@
-import getConfig from "./helpers/config.js";
+import getConfig from "./helpers/getConfig.js";
 import { config } from "./helpers/types.js";
 import getLocalImage from "./getLocalImage.js";
 import getRemoteImage from "./getRemoteImage.js";
