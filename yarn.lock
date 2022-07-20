@@ -547,13 +547,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"booru@npm:2.5.8":
-  version: 2.5.8
-  resolution: "booru@npm:2.5.8"
+"booru@npm:2.5.9":
+  version: 2.5.9
+  resolution: "booru@npm:2.5.9"
   dependencies:
     fast-xml-parser: ^4.0.9
     undici: ^5.7.0
-  checksum: 4c3c365f36757b181b20a7e493accaa4187441ac6551da0f30e1fcfcdf11cb834a05bae30f5c0629eee78cab0e38236073719f6c2d3a8648afa4c8ac101687cd
+  checksum: f5b0061b10c1ea4217a1bfa4b49a676ffafdc6db8de5da30ca036d6f39b4501ccc04be5dda8682c77c381e71b57c0943063744796263b84bf93ca17005db3c25
   languageName: node
   linkType: hard
 
@@ -1147,7 +1147,7 @@ __metadata:
     "@types/node-fetch": 2.6.2
     "@typescript-eslint/eslint-plugin": 5.30.7
     "@typescript-eslint/parser": 5.30.7
-    booru: 2.5.8
+    booru: 2.5.9
     command-line-args: 5.2.1
     command-line-usage: 6.1.3
     eslint: 8.20.0
