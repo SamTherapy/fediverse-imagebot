@@ -28,8 +28,8 @@ export default async function postImage(
   // Upload the image
   const res: Response<Entity.Attachment> = await client
     .uploadMedia(image)
-    .catch((err: Error) => {
-      crashHandler("Error uploading image.", err);
+    .catch((err) => {
+      crashHandler("Error uploading image.", err, err.response.data);
       return {} as Response<Entity.Attachment>;
     });
 

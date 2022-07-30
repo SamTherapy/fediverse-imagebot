@@ -7,10 +7,10 @@ import args from "./args.js";
  * @param e Error object passed in from the error handler
  * @returns This function will never return.
  */
-export default function crashHandler(msg: string, e: Error) {
+export default function crashHandler(msg: string, e: Error, res?: string) {
   console.error(`${msg}: ${e.name}`);
   if (args.verbose) {
-    console.error(`--BEGIN FULL ERROR--\n${e.message}\n--END FULL ERROR--`);
+    console.error(`--BEGIN FULL ERROR--\n${e}\n${res}\n--END FULL ERROR--`);
   } else console.error("Run with -v to see the full error.");
 
   exit(1);
