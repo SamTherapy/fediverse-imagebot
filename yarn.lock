@@ -1157,7 +1157,7 @@ __metadata:
     megalodon: 4.1.0
     pkg: 5.8.0
     prettier: 2.7.1
-    strip-json-comments: 3.0.0
+    strip-json-comments: 3.1.1
     typescript: 4.7.4
   bin:
     fediverse-imagebot: dist/index.js
@@ -2460,14 +2460,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"strip-json-comments@npm:3.0.0":
-  version: 3.0.0
-  resolution: "strip-json-comments@npm:3.0.0"
-  checksum: 83c6bb238e8853cdce220d856b8140d22c81f41a8ba35dfc3230141c1565fb19c4664277652ea91853e4e8672dd1f31db1e682fc1c6cedc300e86c0542d42d1f
-  languageName: node
-  linkType: hard
-
-"strip-json-comments@npm:^3.1.0, strip-json-comments@npm:^3.1.1":
+"strip-json-comments@npm:3.1.1, strip-json-comments@npm:^3.1.0, strip-json-comments@npm:^3.1.1":
   version: 3.1.1
   resolution: "strip-json-comments@npm:3.1.1"
   checksum: 492f73e27268f9b1c122733f28ecb0e7e8d8a531a6662efbd08e22cccb3f9475e90a1b82cab06a392f6afae6d2de636f977e231296400d0ec5304ba70f166443
