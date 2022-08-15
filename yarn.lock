@@ -163,7 +163,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sindresorhus/is@npm:^4.6.0":
+"@sindresorhus/is@npm:4.6.0":
   version: 4.6.0
   resolution: "@sindresorhus/is@npm:4.6.0"
   checksum: 83839f13da2c29d55c97abc3bc2c55b250d33a0447554997a85c539e058e57b8da092da396e252b11ec24a0279a0bed1f537fa26302209327060643e327f81d2
@@ -1164,7 +1164,7 @@ __metadata:
     eslint: 8.22.0
     eslint-config-prettier: 8.5.0
     eslint-plugin-prettier: 4.2.1
-    got-cjs: 12.0.4
+    got-cjs: 12.3.1
     megalodon: 4.1.0
     pkg: 5.8.0
     prettier: 2.7.1
@@ -1239,10 +1239,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"form-data-encoder@npm:1.7.1":
-  version: 1.7.1
-  resolution: "form-data-encoder@npm:1.7.1"
-  checksum: a2a360d5588a70d323c12a140c3db23a503a38f0a5d141af1efad579dde9f9fff2e49e5f31f378cb4631518c1ab4a826452c92f0d2869e954b6b2d77b05613e1
+"form-data-encoder@npm:1.7.2":
+  version: 1.7.2
+  resolution: "form-data-encoder@npm:1.7.2"
+  checksum: aeebd87a1cb009e13cbb5e4e4008e6202ed5f6551eb6d9582ba8a062005178907b90f4887899d3c993de879159b6c0c940af8196725b428b4248cec5af3acf5f
   languageName: node
   linkType: hard
 
@@ -1419,24 +1419,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"got-cjs@npm:12.0.4":
-  version: 12.0.4
-  resolution: "got-cjs@npm:12.0.4"
+"got-cjs@npm:12.3.1":
+  version: 12.3.1
+  resolution: "got-cjs@npm:12.3.1"
   dependencies:
-    "@sindresorhus/is": ^4.6.0
+    "@sindresorhus/is": 4.6.0
     "@szmarczak/http-timer": 4.0.6
     "@types/cacheable-request": ^6.0.2
     "@types/responselike": ^1.0.0
     cacheable-lookup: ^6.0.4
     cacheable-request: ^7.0.2
     decompress-response: ^6.0.0
-    form-data-encoder: 1.7.1
+    form-data-encoder: 1.7.2
     get-stream: ^6.0.1
     http2-wrapper: ^2.1.10
     lowercase-keys: 2.0.0
     p-cancelable: 2.1.1
     responselike: ^2.0.0
-  checksum: 52a4a9a043225b9ba102587b201d8f6e4d35c60e67885c371a5fc4360c6a30a1ec9aef88895e2416c1bcb7469ac8de717ec64c0496ad050dd5083d37cc12e887
+  checksum: 5fe644fd25817159b07998f6351b5420ce28bca801b11ced371711977074b058ec62bd91808125197c9a732c23174fd5f17b87856ef2d23614dc2681b27cfcac
   languageName: node
   linkType: hard
 
