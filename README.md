@@ -34,27 +34,19 @@ Download prebuilt binaries from [here](https://git.froth.zone/sam/fediverse-imag
 ### Running from Source
 
 1. You need to have `npm` and `nodejs` installed.
-
-- Node 16 or greater is required.
-
-2. Install `pnpm` (optional): \
+   - Node 16 or greater is required.
+2. Install `pnpm`: \
    `corepack enable` \
-    Check https://yarnpkg.com/getting-started/install for more information.
-
+    Check <https://pnpm.io/installation> for more information.
 3. Clone the repository: \
    `git clone https://git.froth.zone/sam/fediverse-imagebot.git`
-
 4. Install dependencies: \
    `pnpm i`
-
 5. Build: \
    `pnpm build`
-
 6. Edit the config file: \
    `cp config.sample.jsonc config.jsonc`
-
    - If you want to generate a key you can use https://git.froth.zone/sam/js-feditoken
-
 7. Run the bot: \
    `yarn bot`
 
