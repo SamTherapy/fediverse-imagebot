@@ -35,9 +35,9 @@ Download prebuilt binaries from [here](https://git.froth.zone/sam/fediverse-imag
 
 1. You need to have `npm` and `nodejs` installed.
 
-- Node 15 or greater is required.
+- Node 16 or greater is required.
 
-2. Install `yarn`: \
+2. Install `pnpm` (optional): \
    `corepack enable` \
     Check https://yarnpkg.com/getting-started/install for more information.
 
@@ -45,10 +45,10 @@ Download prebuilt binaries from [here](https://git.froth.zone/sam/fediverse-imag
    `git clone https://git.froth.zone/sam/fediverse-imagebot.git`
 
 4. Install dependencies: \
-   `yarn`
+   `pnpm i`
 
 5. Build: \
-   `yarn build`
+   `pnpm build`
 
 6. Edit the config file: \
    `cp config.sample.jsonc config.jsonc`

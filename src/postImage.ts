@@ -44,5 +44,5 @@ export default async function postImage(
     .catch((err: Error) => {
       crashHandler("Error posting status.", err);
     });
-  if (args.verbose) console.log(`Successfully posted to ${cfg.instance}`);
+  console.log(`Successfully posted to ${cfg.instance}`);
 }

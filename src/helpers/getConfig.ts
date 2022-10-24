@@ -1,5 +1,5 @@
 import { readFile } from "fs/promises";
-import stripJsonComments from "strip-json-comments";
+import JSON5 from "json5";
 import args from "./args.js";
 import crashHandler from "./crashHandler.js";
 import { config } from "./types.js";
@@ -27,13 +27,11 @@ async function readConfig(): Promise<string> {
 export default async function getConfig(): Promise<config> {
   let conf: config;
   try {
-    conf = JSON.parse(
-      stripJsonComments(
-        await readConfig().catch((err) => {
-          crashHandler("Error reading config file.", err);
-          return "";
-        })
-      )
+    conf = JSON5.parse(
+      await readConfig().catch((err) => {
+        crashHandler("Error reading config file.", err);
+        return "";
+      })
     );
   } catch (err: unknown) {
     crashHandler("Error parsing config file.", Error(err as string));

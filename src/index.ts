@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import getConfig from "./helpers/getConfig.js";
 import { config } from "./helpers/types.js";
 import getLocalImage from "./getLocalImage.js";

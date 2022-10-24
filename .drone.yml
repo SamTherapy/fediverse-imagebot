@@ -9,28 +9,29 @@ steps:
   - name: Get Dependencies
     image: node
     commands:
-      - yarn
+      - curl -L https://pnpm.js.org/pnpm.js | node - add --global pnpm@7
+      - pnpm i
 
   - name: Lint
     image: node
     depends_on:
       - Get Dependencies
     commands:
-      - yarn lint:ci
+      - npm run lint:ci
 
   - name: Build
     image: node
     depends_on:
       - Lint
     commands:
-      - yarn build
+      - npm run build
 
   - name: Package
     image: node
     depends_on:
       - Build
     commands:
-      - yarn package -t node16-linux-x64,node16-alpine-x64,node16-macos-x64,node16-win-x64 -o dist/bin/imagebot-x64
+      - npm run package -t node16-linux-x64,node16-alpine-x64,node16-macos-x64,node16-win-x64 -o dist/bin/imagebot-x64
     when:
       event:
         - tag
@@ -59,21 +60,22 @@ steps:
   - name: Get Dependencies
     image: node
     commands:
-      - yarn
+      - curl -L https://pnpm.js.org/pnpm.js | node - add --global pnpm@7
+      - pnpm i
 
   - name: Lint
     image: node
     depends_on:
       - Get Dependencies
     commands:
-      - yarn lint:ci
+      - npm run lint:ci
 
   - name: Build
     image: node
     depends_on:
       - Lint
     commands:
-      - yarn build
+      - npm run build
 
   - name: Package
     image: node
@@ -81,7 +83,7 @@ steps:
       - Build
     commands:
       - wget "https://github.com/ProcursusTeam/ldid/releases/download/v2.1.5-procursus2/ldid_linux_aarch64" -O /usr/local/bin/ldid && chmod +x /usr/local/bin/ldid
-      - yarn package -t node16-linux-arm64,node16-alpine-arm64,node16-macos-arm64,node16-win-arm64 -o dist/bin/imagebot-arm64
+      - npm run package -t node16-linux-arm64,node16-alpine-arm64,node16-macos-arm64,node16-win-arm64 -o dist/bin/imagebot-arm64
     when:
       event:
         - tag
