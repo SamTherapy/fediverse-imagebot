@@ -43,7 +43,7 @@ Download prebuilt binaries from [here](https://git.froth.zone/sam/fediverse-imag
 4. Install dependencies: \
    `pnpm i`
 5. Build: \
-   `pnpm build`
+   `pnpm run build`
 6. Edit the config file: \
    `cp config.sample.jsonc config.jsonc`
    - If you want to generate a key you can use https://git.froth.zone/sam/js-feditoken

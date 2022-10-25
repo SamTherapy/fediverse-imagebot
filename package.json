@@ -5,11 +5,10 @@
     "command-line-usage": "6.1.3",
     "got-cjs": "12.3.1",
     "json5": "2.2.1",
-    "megalodon": "4.1.0",
-    "typescript": "4.8.4"
+    "megalodon": "4.1.0"
   },
-  "name": "fediverse-imagebot",
-  "version": "2.0.0",
+  "name": "@sam/fediverse-imagebot",
+  "version": "2.1.1",
   "description": "Image bot for the fediverse (Pleroma, Mastodon, Misskey)",
   "exports": "./dist/index.js",
   "bin": "dist/index.js",
@@ -17,8 +16,8 @@
     "scripts": "dist/**/*.js"
   },
   "scripts": {
-    "build": "npm run clean && tsc",
-    "clean": "rm -rf dist",
+    "build": "tsc -b",
+    "clean": "tsc -b --clean",
     "lint": "eslint --ext .ts ./src --fix && prettier --write ./src",
     "lint:ci": "eslint --ext .ts,.js ./src && prettier ./src --check",
     "bot": "node ./dist/index.js",
@@ -31,14 +30,14 @@
   "devDependencies": {
     "@types/command-line-args": "5.2.0",
     "@types/command-line-usage": "5.0.2",
-    "@types/node": "18.11.5",
-    "@types/node-fetch": "2.6.2",
+    "@types/node": "^18.11.5",
     "@typescript-eslint/eslint-plugin": "5.41.0",
     "@typescript-eslint/parser": "5.41.0",
     "eslint": "8.26.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "4.2.1",
     "pkg": "5.8.0",
-    "prettier": "2.7.1"
+    "prettier": "2.7.1",
+    "typescript": "4.8.4"
   }
 }
