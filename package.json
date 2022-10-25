@@ -8,7 +8,7 @@
     "megalodon": "4.1.0"
   },
   "name": "@froth/fediverse-imagebot",
-  "version": "2.1.2",
+  "version": "2.1.1",
   "description": "Image bot for the fediverse (Pleroma, Mastodon, Misskey)",
   "main": "dist/bot.js",
   "bin": "dist/bot.js",
