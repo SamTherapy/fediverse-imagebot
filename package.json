@@ -8,7 +8,7 @@
     "megalodon": "4.1.0"
   },
   "name": "@froth/fediverse-imagebot",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Image bot for the fediverse (Pleroma, Mastodon, Misskey)",
   "main": "dist/bot.js",
   "bin": "dist/bot.js",
@@ -25,7 +25,7 @@
     "test": "echo \"No tests yet!\" && exit 0",
     "prepublishOnly": "npm run build"
   },
-  "repository": "https://git.froth.zone/Sam/fediverse-imagebot",
+  "repository": "https://git.froth.zone/sam/fediverse-imagebot",
   "author": "Sam Therapy <sam@samtherapy.net>",
   "license": "0BSD",
   "devDependencies": {
