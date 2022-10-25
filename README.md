@@ -16,7 +16,7 @@ The full list of boorus supported is found [here](https://github.com/AtoraSuunva
 
 ## Downloading the bot
 
-There are currently two ways to do this, either with a pre-built binary or building from source. Both are listed below.
+There are currently three ways to do this, a pre-built binary that bundles in node, from npm, or building from source. Both are listed below.
 
 ### Downloading pre-built binaries
 
@@ -24,12 +24,23 @@ Download prebuilt binaries from [here](https://git.froth.zone/sam/fediverse-imag
 [glibc or musl], macOS and Windows)
 
 1. Run the bot with the `-w` flag to have it generate a configuration file to the local directory.
-
 2. Edit it for your use case.
-
-- If you want to generate a key you can use https://git.froth.zone/sam/js-feditoken
-
+   - If you want to generate a key you can use <https://git.froth.zone/sam/js-feditoken>
 3. Run the bot by launching the executable!
+
+### From NPM
+
+1. Set up using the [Gitea registry](https://git.froth.zone/sam/fediverse-imagebot/packages)
+
+   ```sh
+   npm config set @froth:registry https://git.froth.zone/api/packages/sam/npm/
+   ```
+
+2. After setting up the registry, either install it permanently
+
+   ```sh
+   npx --package=@froth/feditoken feditoken
+   ```
 
 ### Running from Source
 
@@ -48,7 +59,7 @@ Download prebuilt binaries from [here](https://git.froth.zone/sam/fediverse-imag
    `cp config.sample.jsonc config.jsonc`
    - If you want to generate a key you can use https://git.froth.zone/sam/js-feditoken
 7. Run the bot: \
-   `yarn bot`
+   `pnpm bot`
 
 You're done! The bot should post a local image to the fediverse instance of your choosing!
 
@@ -60,7 +71,7 @@ The bot can be automated to post images at set times using a cronjob. \
 Example cron configuration:
 
 ```
-0 * * * * cd /path/to/fediverse-imagebot && /usr/local/bin/yarn bot -c ./config.sample.jsonc
+0 * * * * cd /path/to/fediverse-imagebot && pnpm bot -c ./config.sample.jsonc
 ```
 
 This example will run the bot every hour on the hour with no message using images from the default `images` directory.

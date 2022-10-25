@@ -10,8 +10,8 @@
   "name": "@froth/fediverse-imagebot",
   "version": "2.1.1",
   "description": "Image bot for the fediverse (Pleroma, Mastodon, Misskey)",
-  "exports": "./dist/index.js",
-  "bin": "dist/index.js",
+  "main": "dist/bot.js",
+  "bin": "dist/bot.js",
   "pkg": {
     "scripts": "dist/**/*.js"
   },
@@ -20,7 +20,7 @@
     "clean": "tsc -b --clean",
     "lint": "eslint --ext .ts ./src --fix && prettier --write ./src",
     "lint:ci": "eslint --ext .ts,.js ./src && prettier ./src --check",
-    "bot": "node ./dist/index.js",
+    "bot": "node ./dist/bot.js",
     "package": "pkg . -C Gzip",
     "test": "echo \"No tests yet!\" && exit 0",
     "prepublishOnly": "npm run build"
