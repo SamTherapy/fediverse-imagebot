@@ -122,4 +122,5 @@ dist
 .dccache
 config.json
 config.jsonc
+config.json5
 images/*
