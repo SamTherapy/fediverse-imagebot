@@ -1,8 +1,10 @@
-import { ReadStream } from "fs";
-import generator, { Entity, Response } from "megalodon";
-import { Readable } from "stream";
-import crashHandler from "./helpers/crashHandler.js";
-import { config } from "./helpers/types.js";
+import { ReadStream } from "node:fs"
+import { Readable } from "node:stream"
+
+import generator, { Entity, Response } from "megalodon"
+import pRetry from "p-retry"
+import crashHandler from "./helpers/crashHandler.js"
+import { config } from "./helpers/types.js"
 
 /**
  * Uploads an image to a fediverse instance
@@ -22,26 +24,37 @@ export default async function postImage(
     cfg.instance,
     cfg.accessToken,
     cfg.refreshToken
-  );
+  )
 
   // Upload the image
-  const res: Response<Entity.Attachment> = await client
-    .uploadMedia(image)
-    .catch((err) => {
-      crashHandler("Error uploading image.", err, err.response.data);
-      return {} as Response<Entity.Attachment>;
-    });
+  const upload = async () => client.uploadMedia(image)
+  const res = await pRetry(upload, {
+    retries: cfg.retries,
+    onFailedAttempt: logRetry,
+  }).catch((err) => {
+    crashHandler("Error uploading image.", err, err.response.data)
+    return {} as Response<Entity.Attachment>
+  })
 
-  // Make a status with the image
-  await client
-    .postStatus(cfg.message, {
+  // Make the post
+  const post = async () =>
+    client.postStatus(cfg.message, {
       media_ids: [res.data.id],
       // Change this to make the post visibility you wish
       visibility: cfg.visibility,
       sensitive: sensitivity,
     })
-    .catch((err: Error) => {
-      crashHandler("Error posting status.", err);
-    });
-  console.log(`Successfully posted to ${cfg.instance}`);
+  await pRetry(post, {
+    retries: cfg.retries,
+    onFailedAttempt: logRetry,
+  }).catch((err) => {
+    crashHandler("Error uploading image", err, err.response.data)
+  })
+
+  console.log(`Successfully posted to ${cfg.instance}`)
+}
+
+function logRetry(error: unknown) {
+  console.error("Retrying, error:")
+  console.error(error)
 }

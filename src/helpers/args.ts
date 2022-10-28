@@ -1,7 +1,8 @@
-import commandLineArgs from "command-line-args";
-import commandLineUsage from "command-line-usage";
-import { exit } from "process";
-import writeConfig from "./writeconfig.js";
+import { exit } from "node:process"
+
+import commandLineArgs from "command-line-args"
+import commandLineUsage from "command-line-usage"
+import writeConfig from "./writeconfig.js"
 
 const optionDefinitions = [
   {
@@ -24,7 +25,7 @@ const optionDefinitions = [
     description:
       "Path to the JSON configuration file. (default: ./config.jsonc)",
     defaultValue: "./config.jsonc",
-    typeLabel: "<file.json[c]>",
+    typeLabel: "<file.json[c,5]>",
   },
   {
     name: "writeConfig",
@@ -33,9 +34,9 @@ const optionDefinitions = [
     description:
       "Write a default configuration file to the current directory and exit.",
   },
-];
+]
 
-const args = commandLineArgs(optionDefinitions);
+const args = commandLineArgs(optionDefinitions)
 
 if (args.help) {
   const usage = commandLineUsage([
@@ -52,17 +53,18 @@ if (args.help) {
       content:
         "Project home: {underline https://git.froth.zone/Sam/fediverse-imagebot}",
     },
-  ]);
-  console.log(usage);
-  exit(0);
+  ])
+  console.log(usage)
+  exit(0)
 }
 
-if (args.verbose) console.log("Running in verbose mode.\n");
+if (args.verbose) console.log("Running in verbose mode.\n")
 
 if (args.writeConfig) {
-  writeConfig(args.verbose);
-  console.log("Wrote default config file to ./config.jsonc");
-  exit(0);
+  writeConfig(args.verbose).then(() => {
+    console.log("Wrote default config file to ./config.jsonc")
+    exit(0)
+  })
 }
 
-export default args;
+export default args

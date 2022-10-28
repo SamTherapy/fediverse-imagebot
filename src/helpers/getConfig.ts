@@ -1,8 +1,9 @@
-import { readFile } from "fs/promises";
-import JSON5 from "json5";
-import args from "./args.js";
-import crashHandler from "./crashHandler.js";
-import { config } from "./types.js";
+import { readFile } from "node:fs/promises"
+
+import JSON5 from "json5"
+import args from "./args.js"
+import crashHandler from "./crashHandler.js"
+import { config } from "./types.js"
 
 /**
  * Reads the config file and returns the config object
@@ -10,9 +11,9 @@ import { config } from "./types.js";
  */
 async function readConfig(): Promise<string> {
   return readFile(args.config, "utf8").catch((err) => {
-    crashHandler("Error reading config file.", err);
-    return "CRASH";
-  });
+    crashHandler("Error reading config file.", err)
+    return "CRASH"
+  })
 }
 /**
  * Parses the config file and returns it as a JSON object
@@ -25,20 +26,23 @@ async function readConfig(): Promise<string> {
  * // Prints "https://mastodon.social"
  */
 export default async function getConfig(): Promise<config> {
-  let conf: config;
+  let conf: config
   try {
     conf = JSON5.parse(
       await readConfig().catch((err) => {
-        crashHandler("Error reading config file.", err);
-        return "";
+        crashHandler("Error reading config file.", err)
+        return ""
       })
-    );
+    )
+    // Backwards compatibility for older versions
+    conf.retries ??= 5
+    if (conf.retries < 1) conf.retries = 1
   } catch (err: unknown) {
-    crashHandler("Error parsing config file.", Error(err as string));
-    return {} as config;
+    crashHandler("Error parsing config file.", Error(err as string))
+    return {} as config
   }
   if (args.verbose) {
-    console.log(`Read config file: ${args.config}\n${JSON.stringify(conf)}`);
+    console.log(`Read config file: ${args.config}\n${JSON.stringify(conf)}`)
   }
-  return conf;
+  return conf
 }

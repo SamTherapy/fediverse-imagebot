@@ -9,6 +9,9 @@
   "message": "", // example: "Hello, world!"
   "visibility": "unlisted", // example: "public", "unlisted", "private", "direct"
 
+  // Misc settings
+  "retries": 5, // Number of times to retry an upload/post if it fails. Default is 5 if this does not exist.
+
   "remote": false, // **Set this to `true` if you want to serve a file from a booru!**
   /* THESE SETTINGS WILL BE IGNORED IF YOU SET `remote` TO `false` */
   "booru": "safebooru.org", // example: "safebooru.org"
