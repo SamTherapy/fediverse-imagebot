@@ -3,6 +3,8 @@ import { Readable } from "node:stream"
 
 import generator, { Entity, Response } from "megalodon"
 import pRetry from "p-retry"
+
+import args from "./helpers/args.js"
 import crashHandler from "./helpers/crashHandler.js"
 import { config } from "./helpers/types.js"
 
@@ -38,7 +40,7 @@ export default async function postImage(
 
   // Make the post
   const post = async () =>
-    client.postStatus(cfg.message, {
+    client.postStatus(args.message || cfg.message, {
       media_ids: [res.data.id],
       // Change this to make the post visibility you wish
       visibility: cfg.visibility,

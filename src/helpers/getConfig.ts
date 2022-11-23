@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises"
 
 import JSON5 from "json5"
+
 import args from "./args.js"
 import crashHandler from "./crashHandler.js"
 import { config } from "./types.js"

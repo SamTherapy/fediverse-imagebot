@@ -6,10 +6,11 @@ import { promisify } from "node:util"
 
 import { search, Post } from "booru"
 import got from "got-cjs"
+
+import postImage from "./postImage.js"
 import args from "./helpers/args.js"
 import crashHandler from "./helpers/crashHandler.js"
 import { config } from "./helpers/types.js"
-import postImage from "./postImage.js"
 
 /**
  * Get a remote image from a booru

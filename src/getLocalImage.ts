@@ -2,10 +2,10 @@ import { createReadStream, ReadStream } from "node:fs"
 import { readdir } from "node:fs/promises"
 import { exit } from "node:process"
 
+import postImage from "./postImage.js"
 import args from "./helpers/args.js"
 import crashHandler from "./helpers/crashHandler.js"
 import { config } from "./helpers/types.js"
-import postImage from "./postImage.js"
 
 /**
  * Get a local image from the filesystem
