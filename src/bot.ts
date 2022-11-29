@@ -15,7 +15,7 @@ async function main() {
   else await getLocalImage(conf)
 }
 
-if (Number(process.versions.node.split('.')[0]) < 16) {
+if (Number(process.versions.node.split(".")[0]) < 16) {
   console.error("Please upgrade to node 16. NO GUARENTEES!")
 }
 
