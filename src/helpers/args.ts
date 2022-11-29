@@ -1,8 +1,8 @@
-import { exit } from "node:process";
+import { exit } from "node:process"
 
-import commandLineArgs from "command-line-args";
-import commandLineUsage from "command-line-usage";
-import writeConfig from "./writeConfig.js";
+import commandLineArgs from "command-line-args"
+import commandLineUsage from "command-line-usage"
+import writeConfig from "./writeConfig.js"
 
 const optionDefinitions = [
   {
@@ -42,9 +42,9 @@ const optionDefinitions = [
     defaultValue: "",
     typeLabel: "<message>",
   },
-];
+]
 
-const args = commandLineArgs(optionDefinitions);
+const args = commandLineArgs(optionDefinitions)
 
 if (args.help) {
   const usage = commandLineUsage([
@@ -61,18 +61,18 @@ if (args.help) {
       content:
         "Project home: {underline https://git.froth.zone/Sam/fediverse-imagebot}",
     },
-  ]);
-  console.log(usage);
-  exit(0);
+  ])
+  console.log(usage)
+  exit(0)
 }
 
-if (args.verbose) console.log("Running in verbose mode.\n");
+if (args.verbose) console.log("Running in verbose mode.\n")
 
 if (args.writeConfig) {
   writeConfig(args.verbose).then(() => {
-    console.log("Wrote default config file to ./config.jsonc");
-    exit(0);
-  });
+    console.log("Wrote default config file to ./config.jsonc")
+    exit(0)
+  })
 }
 
-export default args;
+export default args
