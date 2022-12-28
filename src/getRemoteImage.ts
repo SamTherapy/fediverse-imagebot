@@ -5,7 +5,7 @@ import stream from "node:stream"
 import { promisify } from "node:util"
 
 import { search, Post } from "booru"
-import got from "got-cjs"
+import got from "got"
 
 import postImage from "./postImage.js"
 import args from "./helpers/args.js"

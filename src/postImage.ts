@@ -1,7 +1,9 @@
 import { ReadStream } from "node:fs"
 import { Readable } from "node:stream"
 
-import generator, { Entity, Response } from "megalodon"
+import generatorPkg, { Entity, Response } from "megalodon"
+const generator = generatorPkg.default
+
 import pRetry from "p-retry"
 
 import args from "./helpers/args.js"
