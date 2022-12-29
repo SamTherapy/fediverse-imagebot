@@ -18,16 +18,6 @@ The full list of boorus supported is found [here](https://github.com/AtoraSuunva
 
 There are currently three ways to do this, a pre-built binary that bundles in node, from npm, or building from source. Both are listed below.
 
-### Downloading pre-built binaries
-
-Download prebuilt binaries from [here](https://git.froth.zone/sam/fediverse-imagebot/releases/latest). (currently supports x86_64 and arm64 on Linux
-[glibc or musl], macOS and Windows)
-
-1. Run the bot with the `-w` flag to have it generate a configuration file to the local directory.
-2. Edit it for your use case.
-   - If you want to generate a key you can use <https://git.froth.zone/sam/js-feditoken>
-3. Run the bot by launching the executable!
-
 ### From NPM
 
 1. Set up using the [Gitea registry](https://git.froth.zone/sam/fediverse-imagebot/packages)
@@ -36,11 +26,29 @@ Download prebuilt binaries from [here](https://git.froth.zone/sam/fediverse-imag
    npm config set @froth:registry https://git.froth.zone/api/packages/sam/npm/
    ```
 
-2. After setting up the registry, either install it permanently
+2. After setting up the registry, either run it once
 
    ```sh
-   npx --package=@froth/feditoken feditoken
+   npx --package=@froth/fediverse-imagebot fediverse-imagebot
    ```
+
+   or install globally
+
+   ```sh
+   npm i -g @froth/fediverse-imagebot
+   ```
+
+### Downloading pre-built binaries
+
+#### NOTE: This is no longer supported since vercel/pkg is broken
+
+Download prebuilt binaries from [here](https://git.froth.zone/sam/fediverse-imagebot/releases/latest). (currently supports x86_64 and arm64 on Linux
+[glibc or musl], macOS and Windows)
+
+1. Run the bot with the `-w` flag to have it generate a configuration file to the local directory.
+2. Edit it for your use case.
+   - If you want to generate a key you can use <https://git.froth.zone/sam/js-feditoken>
+3. Run the bot by launching the executable!
 
 ### Running from Source
 
