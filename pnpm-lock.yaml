@@ -15,7 +15,7 @@ specifiers:
   eslint-plugin-prettier: 4.2.1
   got: 12.6.0
   json5: 2.2.3
-  megalodon: 5.4.0
+  megalodon: 5.4.1
   p-retry: 5.1.2
   pkg: 5.8.0
   prettier: 2.8.4
@@ -27,7 +27,7 @@ dependencies:
   command-line-usage: 7.0.1
   got: 12.6.0
   json5: 2.2.3
-  megalodon: 5.4.0
+  megalodon: 5.4.1
   p-retry: 5.1.2
 
 devDependencies:
@@ -1363,8 +1363,8 @@ packages:
       yallist: 4.0.0
     dev: true
 
-  /megalodon/5.4.0:
-    resolution: {integrity: sha512-aC5WndBnex1oN55x1XQgI3PeJKYCS9r1S+HDpwnfOseXViPiWP/e/GftmbK75wdPhW1/PUkWAlXuDXM2rQxLdg==}
+  /megalodon/5.4.1:
+    resolution: {integrity: sha512-6UPbODxOFnZPChHEcoZvwTSjJaPmSMQWW40snBIT/YFxpcwH8Q8GfqYRIG46eAKl1PQCUI9gFpEvt9I+l9KKVA==}
     engines: {node: '>=15.0.0'}
     dependencies:
       '@types/oauth': 0.9.1
