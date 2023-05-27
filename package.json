@@ -3,7 +3,7 @@
     "booru": "2.6.3",
     "command-line-args": "5.2.1",
     "command-line-usage": "7.0.1",
-    "got": "12.6.0",
+    "got": "12.6.1",
     "json5": "2.2.3",
     "megalodon": "6.0.2",
     "p-retry": "5.1.2"
